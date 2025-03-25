@@ -14,6 +14,8 @@ public class Pet implements PET_CONSTANTS {
      */
     protected final int petID;  // Used by children for their toString()
 
+    protected String petType = "Default";
+
     /**
      * Used to give each pet a unique ID
      */
@@ -138,6 +140,14 @@ public class Pet implements PET_CONSTANTS {
     }
 
     /**
+     * Sets the type of pet
+     * @param petType type of pet: dog, cat, snake, etc.
+     */
+    public void setPetType(String petType) {
+        this.petType = petType;
+    }
+
+    /**
      * Sets the name of the pet
      * @param name the name of the pet
      * @throws IllegalArgumentException if name is blank
@@ -233,6 +243,14 @@ public class Pet implements PET_CONSTANTS {
      */
     public FEEDING_SCHEDULE getFeedingSchedule() {
         return this.feedingSchedule;
+    }
+
+
+    /**
+     * Returns the type of Pet
+     */
+    public String getPetType() {
+        return this.petType;
     }
 
     /**

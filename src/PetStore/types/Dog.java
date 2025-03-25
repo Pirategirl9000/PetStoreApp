@@ -27,7 +27,7 @@ public class Dog extends Pet {
     /**
      * Valid HABITAT_TYPE's for Dogs
      */
-    protected final HABITAT_TYPE[] VALID_HABITATS = {HABITAT_TYPE.OUTSIDE, HABITAT_TYPE.INSIDE, HABITAT_TYPE.UNSPECIFIED, HABITAT_TYPE.OTHER};
+    protected final HABITAT_TYPE[] VALID_HABITATS = {HABITAT_TYPE.OUTSIDE, HABITAT_TYPE.INSIDE, HABITAT_TYPE.UNSPECIFIED, HABITAT_TYPE.OTHER}; /*--Dogs don't belong in cages--*/
 
     /**
      * Create instance of Dog using enum data types for habitat and feedingSchedule
@@ -41,6 +41,7 @@ public class Dog extends Pet {
      */
     public Dog(String name, int age, float weight, HABITAT_TYPE habitat, FEEDING_SCHEDULE feedingSchedule, String breed, boolean vaccinated) {
         super(name, age, weight, habitat, feedingSchedule);
+        this.setPetType("Dog");
         this.vaccinated = vaccinated;
         try {
             this.setBreed(breed);
@@ -62,6 +63,7 @@ public class Dog extends Pet {
     public Dog(String name, int age, float weight, String habitat, String feedingSchedule, String breed, boolean vaccinated) {
         super(name, age, weight, habitat, feedingSchedule);
         this.vaccinated = vaccinated;
+        this.setPetType("Dog");
         try {
             this.setBreed(breed);
         } catch (IllegalArgumentException e) {
@@ -78,6 +80,7 @@ public class Dog extends Pet {
      */
     public Dog(String name, int age, float weight) {
         super(name, age, weight);
+        this.setPetType("Dog");
         //this.vaccinated = false;
         //this.setBreed("Unknown")
     }
@@ -88,6 +91,7 @@ public class Dog extends Pet {
      */
     public Dog(String name) {
         super(name);
+        this.setPetType("Dog");
         //this.vaccinated = false;
         //this.setBreed("Unknown")
     }
@@ -97,6 +101,7 @@ public class Dog extends Pet {
      */
     public Dog() {
         super();
+        this.setPetType("Dog");
         //this.vaccinated = false;
         //this.setBreed("Unknown")
     }

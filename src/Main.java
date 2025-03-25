@@ -19,13 +19,6 @@ which allows:
 • 5 points = updating inventory
 • 5 points = properly written README.md
 • 5 points = properly written JavaDoc
-
-
-• Step 1: code and test the base class (optionally enum at the base level)
-• Step 2: code and test 1st of the derived classes (optionally enum at the derived level)
-• Step 3: code and test the PetStoreApp user-interface for only one of your inventory types
-• Step 4: code and test the 2nd derived class, enum, and update the PetStoreApp user-interface
-
  */
 
 
@@ -33,12 +26,22 @@ which allows:
 @Author: Violet French
 @src: https://github.com/Pirategirl9000/PetStoreApp
  */
+import PetStore.*;
+import PetStore.types.Pet;
 
 /**
  * Driver Code
  */
 public class Main {
     public static void main(String[] args) {
+        Pet[] pets = {new Pet(), new Pet()};
+
+        Inventory inv = new Inventory();
+        Inventory inv2 = new Inventory(new Pet());
+        Inventory inv3 = new Inventory(new Pet(), new Pet());
+        Inventory inv4 = new Inventory(pets);
+
+
 
     }
 }
