@@ -5,37 +5,13 @@
 
 package Inventory;
 
-/**
- * Stores various common feeding schedule constants
- */
-enum FEEDING_SCHEDULE {
-    TRI_DAILY,
-    TWICE_DAILY,
-    DAILY,
-    TRI_WEEKLY,
-    TWICE_WEEKLY,
-    WEEKLY,
-    OTHER,
-    UNSPECIFIED
-}
 
-/**
- * Stores various common habitat type constants
- */
-enum HABITAT_TYPE {
-    CAGE,
-    TANK,
-    INSIDE,
-    OUTSIDE,
-    PEN,
-    OTHER,
-    UNSPECIFIED
-}
+
 
 /**
  * Parent class for any type of animal in the pet store
  */
-public class Pet {
+public class Pet implements PET_CONSTANTS {
     /**
      * Unique Identifier for each pet, used when checking equality or when creating default Pet(name=petID)
      */
