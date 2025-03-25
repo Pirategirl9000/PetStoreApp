@@ -4,13 +4,7 @@
 • using protected access modifier when appropriate
 • date field
 • 2 derived classes. Possible suggestions: Fish, Bird, etc.
-• 2 unique fields per derived class. Possible suggestions:
-• 1 or 2 enums applied at either the base or derived class level
-• Example at the base level:
-• HabitatType: CAGE, AQUARIUM, TERRARIUM, OPEN_SPACE
-• FeedingSchedule: ONCE_DAILY, TWICE_DAILY, THREE_TIMES_DAILY, WEEKLY,
-BIWEEKLY
-• Example at the derived class level: BodyShape, NestType, MigrationPattern
+• 2 unique fields per derived class.
 • 2 packages
 • Package that stores the classes & enums related to inventory data
 • Package that stores the classes for managing the user’s interface

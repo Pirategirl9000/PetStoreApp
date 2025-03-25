@@ -118,23 +118,44 @@ public class Pet {
         this.setFeedingSchedule(feedingSchedule);
     }
 
+    /**
+     * Create instance of pet with default feedingSchedule and habitat
+     * @param name the name of the pet
+     * @param age age of the pet
+     * @param weight weight of the pet
+     */
     public Pet(String name, int age, float weight) {
         this(name, age, weight, HABITAT_TYPE.UNSPECIFIED, FEEDING_SCHEDULE.UNSPECIFIED);
     }
 
+    /**
+     * Create instance of pet with a name and default values
+     * @param name the name of the pet
+     */
     public Pet(String name) {
         this(name, 0, 0, HABITAT_TYPE.UNSPECIFIED, FEEDING_SCHEDULE.UNSPECIFIED);
     }
 
+    /**
+     * Create a default instance of a pet
+     */
     public Pet() {
-        this("", 0, 0, HABITAT_TYPE.UNSPECIFIED, FEEDING_SCHEDULE.UNSPECIFIED)
+        this("", 0, 0, HABITAT_TYPE.UNSPECIFIED, FEEDING_SCHEDULE.UNSPECIFIED); // Name will throw exception that is caught by override constructor
     }
 
+    /**
+     * Sets the habitat, must be instance of HABITAT_TYPE
+     * @param habitat ideal habitat for the pet as an instance of HABITAT_TYPE enum
+     */
     public void setHabitat(HABITAT_TYPE habitat) {
         this.habitat = habitat;
     }
 
-
+    /**
+     * Sets the habitat, must be equal to value in HABITAT_TYPE enum
+     * @param habitat ideal habitat for the pet; must match item in HABITAT_TYPE enum
+     * @throws IllegalArgumentException if habitat does not match item in HABITAT_TYPE enum
+     */
     public void setHabitat(String habitat) throws IllegalArgumentException {
         try {
             this.habitat = HABITAT_TYPE.valueOf(habitat);
@@ -143,12 +164,22 @@ public class Pet {
         }
     }
 
+    /**
+     * Sets the name of the pet
+     * @param name the name of the pet
+     * @throws IllegalArgumentException if name is blank
+     */
     public void setName(String name) {
         if (name.trim().isBlank()) {
             throw new IllegalArgumentException("Name cannot be blank");
         }
     }
 
+    /**
+     * Sets the age of the pet
+     * @param age the age of the pet
+     * @throws IllegalArgumentException if age < 0
+     */
     public void setAge(int age) {
         if (age < 0) {
             throw new IllegalArgumentException("Age cannot be negative");
@@ -157,23 +188,77 @@ public class Pet {
         this.age = age;
     }
 
+    /**
+     * Sets the weight of the pet
+     * @param weight weight of the pet
+     * @throws IllegalArgumentException if weight < 0
+     */
     public void setWeight(float weight) {
-        if (weight < 0) {
+        if (weight < 0) { // Allow weight == 0 because I can't be bothered to try-catch weight in the constructors
             throw new IllegalArgumentException("Weight cannot be negative");
         }
 
         this.weight = weight;
     }
 
+    /**
+     * Sets the feedingSchedule, must be instance of FEEDING_SCHEDULE
+     * @param feedingSchedule ideal feeding schedule for the pet as an instance of FEEDING_SCHEDULE enum
+     */
     public void setFeedingSchedule(FEEDING_SCHEDULE feedingSchedule) {
         this.feedingSchedule = feedingSchedule;
     }
 
+    /**
+     * Sets the feedingSchedule, must be instance of FEEDING_SCHEDULE
+     * @param feedingSchedule ideal feedingSchedule for the pet; must match item in FEEDING_SCHEDULE enum
+     * @throws IllegalArgumentException if feedingSchedule does not match item in FEEDING_SCHEDULE enum
+     */
     public void setFeedingSchedule(String feedingSchedule) throws IllegalArgumentException {
         try {
             this.feedingSchedule = FEEDING_SCHEDULE.valueOf(feedingSchedule);
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException("Invalid FeedingSchedule, FeedingSchedule Assignment Aborted");
         }
+    }
+
+    /**
+     * Returns the name of the pet
+     * @return name
+     */
+    public String getName() {
+        return this.name;
+    }
+
+    /**
+     * Returns the age of the pet
+     * @return age
+     */
+    public int getAge() {
+        return this.age;
+    }
+
+    /**
+     * Returns the weight of the pet
+     * @return weight
+     */
+    public float getWeight() {
+        return this.weight;
+    }
+
+    /**
+     * Returns the habitat of the pet
+     * @return habitat
+     */
+    public HABITAT_TYPE getHabitat() {
+        return this.habitat;
+    }
+
+    /**
+     * Returns the feedingSchedule of the pet
+     * @return feedingSchedule
+     */
+    public FEEDING_SCHEDULE getFeedingSchedule() {
+        return this.feedingSchedule;
     }
 }
