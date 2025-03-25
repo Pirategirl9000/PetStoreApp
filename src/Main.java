@@ -1,5 +1,5 @@
-/*
 
+/*
 • include your group member’s full names and repo URL in each class
 • using protected access modifier when appropriate
 • date field
@@ -39,6 +39,7 @@ Do NOT try to code the whole project before testing. Incremental development is 
 @Author: Violet French
 @src: https://github.com/Pirategirl9000/PetStoreApp
  */
+
 
 public class Main {
     public static void main(String[] args) {

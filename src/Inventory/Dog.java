@@ -3,9 +3,8 @@
 @src: https://github.com/Pirategirl9000/PetStoreApp
  */
 
-public class Pet {
-    enum HABITAT_TYPE {
+package Inventory;
 
-    }
+public class Dog extends Pet {
 
 }
