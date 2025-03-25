@@ -3,7 +3,7 @@
 @src: https://github.com/Pirategirl9000/PetStoreApp
  */
 
-package Inventory;
+package PetStore.types;
 
 /**
  * Interface containing constants for Pet Objects or those superseded by Pet
@@ -12,7 +12,7 @@ public interface PET_CONSTANTS {
     /**
      * Stores various common feeding schedule constants
      */
-    enum FEEDING_SCHEDULE {
+     enum FEEDING_SCHEDULE {
         TRI_DAILY,
         TWICE_DAILY,
         DAILY,

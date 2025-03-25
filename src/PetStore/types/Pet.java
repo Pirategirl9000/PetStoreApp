@@ -3,10 +3,7 @@
 @src: https://github.com/Pirategirl9000/PetStoreApp
  */
 
-package Inventory;
-
-
-
+package PetStore.types;
 
 /**
  * Parent class for any type of animal in the pet store
@@ -15,7 +12,7 @@ public class Pet implements PET_CONSTANTS {
     /**
      * Unique Identifier for each pet, used when checking equality or when creating default Pet(name=petID)
      */
-    private final int petID;
+    protected final int petID;  // Used by children for their toString()
 
     /**
      * Used to give each pet a unique ID
@@ -25,27 +22,27 @@ public class Pet implements PET_CONSTANTS {
     /**
      * Name of the pet
      */
-    private String name;
+    protected String name;
 
     /**
      * Age of the pet
      */
-    private int age;
+    protected int age;
 
     /**
      * Float representation of the pet's weight
      */
-    private float weight;
+    protected float weight;
 
     /**
      * Ideal habitat for the pet
      */
-    private HABITAT_TYPE habitat;
+    protected HABITAT_TYPE habitat;
 
     /**
      * Feeding schedule of the pet
      */
-    private FEEDING_SCHEDULE feedingSchedule;
+    protected FEEDING_SCHEDULE feedingSchedule;
 
 
     /**
@@ -236,5 +233,13 @@ public class Pet implements PET_CONSTANTS {
      */
     public FEEDING_SCHEDULE getFeedingSchedule() {
         return this.feedingSchedule;
+    }
+
+    /**
+     * Returns a String representation of the object
+     * @return Pet: {petID}
+     */
+    @Override public String toString() {
+        return "Pet: " + String.valueOf(this.petID);
     }
 }
