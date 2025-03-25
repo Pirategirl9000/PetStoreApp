@@ -166,15 +166,4 @@ public class Dog extends Pet {
     public boolean getVaccinated() {
         return this.vaccinated;
     }
-
-
-
-    /**
-     * Returns a String representation of the object
-     * @return Dog: {petID}
-     */
-    @Override public String toString() {
-        // Built this way so that Dog d != Pet d since dog has more info that pet doesn't
-        return "Dog: " + String.valueOf(this.petID);
-    }
 }
