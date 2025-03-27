@@ -49,6 +49,10 @@ public class Inventory {
         return this.pets.get(index);
     }
 
+    public void clearInventory() {
+        this.pets.clear();
+    }
+
     /**
      * Returns a stringified list of the Inventory
      * @return String of this.pets
@@ -56,7 +60,4 @@ public class Inventory {
     @Override public String toString() {
         return pets.toString();
     }
-
-
-
 }

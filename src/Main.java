@@ -8,7 +8,6 @@
 • A user-friendly interface for managing the Pet’s store inventory
 which allows:
 • adding inventory
-• deleting inventory
 • display the inventory in a column structured list using printf
 • saving the inventory to a text file, using piped delimited
 • loading the inventory from a text file, using piped delimited
