@@ -25,7 +25,9 @@ which allows:
 @Author: Violet French
 @src: https://github.com/Pirategirl9000/PetStoreApp
  */
-import PetStore.*;
+
+import PetStore.UI.PetStore;
+import PetStore.types.PET_CONSTANTS;
 import PetStore.types.Pet;
 
 /**
@@ -33,12 +35,10 @@ import PetStore.types.Pet;
  */
 public class Main {
     public static void main(String[] args) {
-        Pet[] pets = {new Pet(), new Pet()};
+        PetStore ps = new PetStore();
+        ps.addPet(new Pet("Danny", 5, 30, PET_CONSTANTS.HABITAT_TYPE.UNSPECIFIED, PET_CONSTANTS.FEEDING_SCHEDULE.UNSPECIFIED));
 
-        Inventory inv = new Inventory();
-        Inventory inv2 = new Inventory(new Pet());
-        Inventory inv3 = new Inventory(new Pet(), new Pet());
-        Inventory inv4 = new Inventory(pets);
+        ps.initCLI();
 
 
 

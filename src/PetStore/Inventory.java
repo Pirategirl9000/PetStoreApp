@@ -17,6 +17,9 @@ public class Inventory {
      */
     private final ArrayList<Pet> pets = new ArrayList<>();
 
+    private static final String PRINTOUTKEY = String.format("%5s %20s %7s %9s %15s %19s", "", "NAME", "AGE", "WEIGHT", "HABITAT", "FEEDING_SCHEDULE");
+
+
     /**
      * Creates a new instance of Inventory with a variable number of pets
      * @param pets vararg : any number of pets you want to initialize the Inventory with
@@ -59,6 +62,16 @@ public class Inventory {
      * @return String of this.pets
      */
     @Override public String toString() {
-        return pets.toString();
+        StringBuilder output = new StringBuilder();
+
+        output.append("Inventory:\n");
+        output.append(PRINTOUTKEY);
+        output.append("\n");
+
+        for (Pet p : this.pets) {
+            output.append(p.toString()).append("\n");
+        }
+
+        return output.toString();
     }
 }

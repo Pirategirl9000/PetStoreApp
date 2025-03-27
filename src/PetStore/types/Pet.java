@@ -153,9 +153,13 @@ public class Pet implements PET_CONSTANTS {
      * @throws IllegalArgumentException if name is blank
      */
     public void setName(String name) {
-        if (name.trim().isBlank()) {
+        name = name.trim();
+
+        if (name.isBlank()) {
             throw new IllegalArgumentException("Name cannot be blank");
         }
+
+        this.name = name;
     }
 
     /**
@@ -253,11 +257,7 @@ public class Pet implements PET_CONSTANTS {
         return this.petType;
     }
 
-    /**
-     * Returns a String representation of the object
-     * @return Pet: {petID}
-     */
     @Override public String toString() {
-        return "Pet: " + String.valueOf(this.petID);
+        return String.format("%5d %20s %7d %9.2f %15s %19s", this.petID, this.getName(), this.getAge(), this.getWeight(), this.getHabitat().toString(), this.getFeedingSchedule().toString());
     }
 }

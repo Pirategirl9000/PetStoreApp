@@ -1,3 +1,8 @@
+/*
+@Author: Violet French
+@src: https://github.com/Pirategirl9000/PetStoreApp
+ */
+
 package PetStore.UI;
 
 enum COMMANDS {

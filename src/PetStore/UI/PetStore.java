@@ -61,10 +61,10 @@ public class PetStore extends Inventory {
 
             switch (COMMANDS.valueOf(command)) {
                 case addPet:
-                    this.addPet();
+                    this.addPet(console);
                     break;
                 case clearInv:
-                    super.clearInventory();
+                    this.clearInventory();
                     break;
                 case setSaveFile:
                     this.saveToFile();
@@ -88,6 +88,7 @@ public class PetStore extends Inventory {
                             "}");
                     break;
                 case printInv:
+                    System.out.print(this.toString());
                     break;
                 case save:
                     break;
