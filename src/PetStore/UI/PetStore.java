@@ -11,6 +11,8 @@ import PetStore.Inventory;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -153,6 +155,10 @@ public class PetStore extends Inventory {
                 currentIndex = 0;
                 pet = new Pet();
 
+                if (token.length == 0) {  // Checking for blank line in file
+                    continue;
+                }
+
 
                 for (String segment: token) { // EACH SEGMENT OF IT
                     segment = segment.trim();
@@ -181,7 +187,15 @@ public class PetStore extends Inventory {
     }
 
     public void saveToFile() {
-        return;
+        try {
+            FileWriter fw = new FileWriter(this.fileOut);
+
+            fw.write(this.getRawInventory());
+
+            fw.close();
+        } catch (IOException e) {
+            System.out.println("The item at: " + this.fileIn.getAbsolutePath() + " is a directory and cannot be written to.");
+        }
 
 
 

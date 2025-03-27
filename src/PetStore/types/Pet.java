@@ -258,6 +258,6 @@ public class Pet implements PET_CONSTANTS {
     }
 
     @Override public String toString() {
-        return String.format("%5d %20s %7d %9.2f %15s %19s", this.petID, this.getName(), this.getAge(), this.getWeight(), this.getHabitat().toString(), this.getFeedingSchedule().toString());
+        return String.format("%5d|%20s|%7d|%9.2f|%15s|%19s|", this.petID, this.getName(), this.getAge(), this.getWeight(), this.getHabitat().toString(), this.getFeedingSchedule().toString());
     }
 }

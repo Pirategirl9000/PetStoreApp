@@ -15,9 +15,9 @@ public class Inventory {
     /**
      * Arraylist storing all the pets in Inventory
      */
-    private final ArrayList<Pet> pets = new ArrayList<>();
+    protected final ArrayList<Pet> pets = new ArrayList<>();
 
-    private static final String PRINTOUTKEY = String.format("%5s %20s %7s %9s %15s %19s", "", "NAME", "AGE", "WEIGHT", "HABITAT", "FEEDING_SCHEDULE");
+    private static final String PRINTOUTKEY = String.format("%5s|%20s|%7s|%9s|%15s|%19s|", "ID", "NAME", "AGE", "WEIGHT", "HABITAT", "FEEDING_SCHEDULE");
 
 
     /**
@@ -67,6 +67,16 @@ public class Inventory {
         output.append("Inventory:\n");
         output.append(PRINTOUTKEY);
         output.append("\n");
+
+        for (Pet p : this.pets) {
+            output.append(p.toString()).append("\n");
+        }
+
+        return output.toString();
+    }
+
+    public String getRawInventory() {
+        StringBuilder output = new StringBuilder();
 
         for (Pet p : this.pets) {
             output.append(p.toString()).append("\n");
