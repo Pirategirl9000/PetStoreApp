@@ -18,9 +18,6 @@ import java.util.Scanner;
 public class PetStore extends Inventory {
     private File fileOut;
     private File fileIn;
-    enum FILE_FORMAT {PetType, Name, Age, Weight, Habitat, Feeding};
-
-
 
 
     public PetStore(String fileOut, String fileIn) {
@@ -56,8 +53,56 @@ public class PetStore extends Inventory {
     }
 
     public void initCLI() {
-        return;
+        Scanner console = new Scanner(System.in);
+        String command;
 
+        while (true) {
+            command = console.nextLine();
+
+            switch (COMMANDS.valueOf(command)) {
+                case addPet:
+                    this.addPet();
+                    break;
+                case clearInv:
+                    super.clearInventory();
+                    break;
+                case setSaveFile:
+                    this.saveToFile();
+                    break;
+                case help:
+                    System.out.print("COMMANDS {\n" +
+                            "    clearInv,  // Clears the Inventory\n" +
+                            "    printInv,  // Prints a stringified list of the current pets in Inventory\n" +
+                            "\n" +
+                            "    setInputFile,  // Sets a file for reading into\n" +
+                            "    readFile,  // Reads into set file\n" +
+                            "\n" +
+                            "    setSaveFile,  // Sets a save file\n" +
+                            "    save,  // Save the current changes to inventory\n" +
+                            "\n" +
+                            "    addPet,  // Activates interface for creating a new pet\n" +
+                            "    removePet,  // Activates interface for removing a pet\n" +
+                            "\n" +
+                            "    help,  // Displays Available commands\n" +
+                            "    quit  // Quits the Running CLI instance\n" +
+                            "}");
+                    break;
+                case printInv:
+                    break;
+                case save:
+                    break;
+                case removePet:
+                    break;
+                case readFile:
+                    break;
+                case setInputFile:
+                    break;
+                case quit:
+                    return;
+            }
+
+
+        }
 
 
 
@@ -88,7 +133,7 @@ public class PetStore extends Inventory {
     }
 
     public void readFile() {
-        // String PetType, String name, int age, float weight, HABITAT_TYPE habitat, FEEDING_SCHEDULE feedingSchedule
+        // String PetType | String name | int age | float weight | HABITAT_TYPE habitat | FEEDING_SCHEDULE feedingSchedule
 
         try {
             Scanner sc = new Scanner(this.fileIn);
@@ -115,7 +160,12 @@ public class PetStore extends Inventory {
                         continue;
                     }
 
-                    this.setValue(pet, FILE_FORMAT.values()[currentIndex], segment);
+                    try {
+                        this.setValue(pet, FILE_FORMAT.values()[currentIndex], segment);
+                    } catch (IllegalArgumentException e) {
+                        System.out.println("Unable to parse input for {" + segment + "} in input file.");
+                    }
+
                     currentIndex++;
                 }
 
@@ -123,11 +173,9 @@ public class PetStore extends Inventory {
                 this.addPet(pet);
             }
 
-
-
-
         } catch (FileNotFoundException e) {
-            System.out.println("File not found");
+            System.out.println("Error reading file " + this.fileIn.getAbsolutePath());
+            System.out.println("Reason: File not Found");
         }
     }
 
@@ -137,6 +185,11 @@ public class PetStore extends Inventory {
 
 
 
+
+    }
+
+
+    public void addPet(Scanner sc) {  // Mimics the function addPet(Pet p) but instead prompts those values
 
     }
 }
