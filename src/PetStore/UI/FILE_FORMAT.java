@@ -11,5 +11,9 @@ enum FILE_FORMAT {
     Age,  // Age of the Pet
     Weight,  // Weight of the Pet
     Habitat,  // Habitat for the Pet as instance of HABITAT_TYPE enum
-    Feeding  // Feeding Schedule for the Pet as instance of FEEDING_SCHEDULE enum
+    Feeding,  // Feeding Schedule for the Pet as instance of FEEDING_SCHEDULE enum
+    Breed,  // Breed of Dog (DOGS ONLY)
+    Vaccinated,  // Vaccination Status (DOGS ONLY)
+    Venomous,  // Whether snake is venomous (SNAKES ONLY)
+    Safe_To_Handle  // Whether snake is safe to handle (SNAKES ONLY)
 }

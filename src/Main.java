@@ -27,7 +27,7 @@ which allows:
  */
 
 import PetStore.UI.PetStore;
-import PetStore.types.PET_CONSTANTS;
+import PetStore.types.enums.*;
 import PetStore.types.Pet;
 
 /**
@@ -36,7 +36,7 @@ import PetStore.types.Pet;
 public class Main {
     public static void main(String[] args) {
         PetStore ps = new PetStore();
-        ps.addPet(new Pet("Danny", 5, 30, PET_CONSTANTS.HABITAT_TYPE.UNSPECIFIED, PET_CONSTANTS.FEEDING_SCHEDULE.UNSPECIFIED));
+        ps.addPet(new Pet("Danny", 5, 30, HABITAT_TYPE.UNSPECIFIED, FEEDING_SCHEDULE.UNSPECIFIED));
 
         ps.initCLI();
 

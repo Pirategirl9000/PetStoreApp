@@ -5,6 +5,9 @@
 
 package PetStore.types;
 
+import PetStore.types.enums.*;
+
+
 /**
  * Class for handling Dog type Pets
  */
@@ -165,5 +168,10 @@ public class Dog extends Pet {
      */
     public boolean getVaccinated() {
         return this.vaccinated;
+    }
+
+    @Override public String toString() {
+        // ID|NAME|AGE|WEIGHT|HABITAT|FEEDINGSCHEDULE|BREED|VACCINATED|||
+        return String.format("%5d|%20s|%7d|%9.2f|%15s|%19s|%20s|%6s|%9s|%15s|", this.petID, this.getName(), this.getAge(), this.getWeight(), this.getHabitat().toString(), this.getFeedingSchedule().toString(), this.breed, this.vaccinated, "", "");
     }
 }

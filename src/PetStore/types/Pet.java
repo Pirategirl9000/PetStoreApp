@@ -5,10 +5,15 @@
 
 package PetStore.types;
 
+import PetStore.types.enums.*;
+
+
+
 /**
  * Parent class for any type of animal in the pet store
  */
-public class Pet implements PET_CONSTANTS {
+public class Pet {
+
     /**
      * Unique Identifier for each pet, used when checking equality or when creating default Pet(name=petID)
      */
@@ -258,6 +263,7 @@ public class Pet implements PET_CONSTANTS {
     }
 
     @Override public String toString() {
-        return String.format("%5d|%20s|%7d|%9.2f|%15s|%19s|", this.petID, this.getName(), this.getAge(), this.getWeight(), this.getHabitat().toString(), this.getFeedingSchedule().toString());
+        // ID|NAME|AGE|WEIGHT|HABITAT|FEEDINGSCHEDULE|||||
+        return String.format("%5d|%20s|%7d|%9.2f|%15s|%19s|%20s|%6s|%9s|%15s|", this.petID, this.getName(), this.getAge(), this.getWeight(), this.getHabitat().toString(), this.getFeedingSchedule().toString(), "", "", "", "");
     }
 }

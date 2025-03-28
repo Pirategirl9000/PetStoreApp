@@ -17,7 +17,7 @@ public class Inventory {
      */
     protected final ArrayList<Pet> pets = new ArrayList<>();
 
-    private static final String PRINTOUTKEY = String.format("%5s|%20s|%7s|%9s|%15s|%19s|", "ID", "NAME", "AGE", "WEIGHT", "HABITAT", "FEEDING_SCHEDULE");
+    private static final String PRINTOUTKEY = String.format("%5s|%20s|%7s|%9s|%15s|%19s|%20s|%6s|%9s|%15s", "ID", "NAME", "AGE", "WEIGHT", "HABITAT", "FEEDING_SCHEDULE", "BREED", "VACCINATED", "VENOMOUS", "SAFE_TO_HANDLE");
 
 
     /**

@@ -5,7 +5,7 @@
 
 package PetStore.UI;
 
-import PetStore.types.PET_CONSTANTS;
+import PetStore.types.enums.*;
 import PetStore.types.Pet;
 import PetStore.Inventory;
 
@@ -59,6 +59,13 @@ public class PetStore extends Inventory {
         String command;
 
         while (true) {
+            // I present, my CLI prompt
+            System.out.println("PSUtil>");
+
+            // I think the name is complex looking without being pretentious
+            // People who label things with all these sci-fi names makes it come off so, ick
+            // I miss the simple days when we created a genius model for conducting electricity to perform arithmetic and naming it 'Adder'
+
             command = console.nextLine();
 
             switch (COMMANDS.valueOf(command)) {
@@ -69,9 +76,19 @@ public class PetStore extends Inventory {
                     this.clearInventory();
                     break;
                 case setSaveFile:
-                    this.saveToFile();
+                    System.out.print("Path to File: ");
+                    command = console.nextLine();
+
+                    try {
+                        this.fileOut = new File(command);
+                    } catch (Exception e) {
+                        System.out.println("An error was encountered while setting the file. Error: " + e.getMessage());
+                    }
+
                     break;
                 case help:
+                    // Don't worry I didn't do all that indentation and stuff, just copy pasted the enum code into some double quotes and IntelliJ formatted it
+                    //
                     System.out.print("COMMANDS {\n" +
                             "    clearInv,  // Clears the Inventory\n" +
                             "    printInv,  // Prints a stringified list of the current pets in Inventory\n" +
@@ -93,6 +110,7 @@ public class PetStore extends Inventory {
                     System.out.print(this.toString());
                     break;
                 case save:
+                    this.saveToFile();
                     break;
                 case removePet:
                     break;
@@ -127,10 +145,10 @@ public class PetStore extends Inventory {
                 pet.setWeight((int) value);
                 break;
             case Habitat:
-                pet.setHabitat(PET_CONSTANTS.HABITAT_TYPE.valueOf(value.toString()));
+                pet.setHabitat(HABITAT_TYPE.valueOf(value.toString()));
                 break;
             case Feeding:
-                pet.setFeedingSchedule(PET_CONSTANTS.FEEDING_SCHEDULE.valueOf(value.toString()));
+                pet.setFeedingSchedule(FEEDING_SCHEDULE.valueOf(value.toString()));
                 break;
         }
     }
@@ -196,15 +214,12 @@ public class PetStore extends Inventory {
         } catch (IOException e) {
             System.out.println("The item at: " + this.fileIn.getAbsolutePath() + " is a directory and cannot be written to.");
         }
-
-
-
-
-
     }
 
 
     public void addPet(Scanner sc) {  // Mimics the function addPet(Pet p) but instead prompts those values
+        ArrayList<String> responses = new ArrayList<>();
+
 
     }
 }
