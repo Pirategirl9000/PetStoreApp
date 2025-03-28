@@ -5,6 +5,8 @@
 
 package PetStore.UI;
 
+import PetStore.types.Dog;
+import PetStore.types.Snake;
 import PetStore.types.enums.*;
 import PetStore.types.Pet;
 import PetStore.Inventory;
@@ -21,28 +23,43 @@ public class PetStore extends Inventory {
     private File fileOut;
     private File fileIn;
 
-
+    /**
+     * Initializes a pet store with
+     * @param fileOut
+     * @param fileIn
+     */
     public PetStore(String fileOut, String fileIn) {
         super();
-        this.setFileOut(fileOut);
-        this.setFileIn(fileIn);
+        try {
+            this.setFileOut(fileOut);
+            this.setFileIn(fileIn);
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found");
+        }
 
         this.readFile();
     }
 
+    /**
+     * Initializes a pet store with varargs pets
+     * @param pets variable amount of pets
+     */
     public PetStore(Pet... pets) {
         super(pets);
     }
 
+    /**
+     * Initializes a pet store
+     */
     public PetStore() {
         super();
     }
 
-    public void setFileOut(String fileOut) {
+    public void setFileOut(String fileOut) throws FileNotFoundException {
         this.fileOut = new File(fileOut);
     }
 
-    public void setFileIn(String fileIn) {
+    public void setFileIn(String fileIn) throws FileNotFoundException {
         this.fileIn = new File(fileIn);
     }
 
@@ -72,23 +89,25 @@ public class PetStore extends Inventory {
                 case addPet:
                     this.addPet(console);
                     break;
+
                 case clearInv:
                     this.clearInventory();
                     break;
+
                 case setSaveFile:
                     System.out.print("Path to File: ");
                     command = console.nextLine();
 
                     try {
-                        this.fileOut = new File(command);
-                    } catch (Exception e) {
+                        this.setFileOut(command);
+                    } catch (FileNotFoundException e) {
                         System.out.println("An error was encountered while setting the file. Error: " + e.getMessage());
                     }
 
                     break;
+
                 case help:
                     // Don't worry I didn't do all that indentation and stuff, just copy pasted the enum code into some double quotes and IntelliJ formatted it
-                    //
                     System.out.print("COMMANDS {\n" +
                             "    clearInv,  // Clears the Inventory\n" +
                             "    printInv,  // Prints a stringified list of the current pets in Inventory\n" +
@@ -106,18 +125,42 @@ public class PetStore extends Inventory {
                             "    quit  // Quits the Running CLI instance\n" +
                             "}");
                     break;
+
                 case printInv:
-                    System.out.print(this.toString());
+                    System.out.println(this);
                     break;
+
                 case save:
                     this.saveToFile();
                     break;
+
                 case removePet:
+                    System.out.print("Pet ID: ");
+                    int id = console.nextInt();
+                    try {
+                        this.removePet(this.getPetByID(id));
+                    } catch (Exception e) {
+                        System.out.println("Pet with ID: " + id + " could not be found");
+                    }
+
                     break;
+
                 case readFile:
+                    this.readFile();
                     break;
+
                 case setInputFile:
+                    System.out.print("Path to File: ");
+                    command = console.nextLine();
+
+                    try {
+                        this.setFileIn(command);
+                    } catch (FileNotFoundException e) {
+                        System.out.println("An error was encountered while setting the file. Error: " + e.getMessage());
+                    }
+
                     break;
+
                 case quit:
                     return;
             }
@@ -219,7 +262,55 @@ public class PetStore extends Inventory {
 
     public void addPet(Scanner sc) {  // Mimics the function addPet(Pet p) but instead prompts those values
         ArrayList<String> responses = new ArrayList<>();
+        String[] prompts = new String[] {
+                "What is your pet's name: ",
+                "What is your pet's age: ",
+                "What is your pet's weight: ",
+                "What is your pet's habitat: ",
+                "What is your pet's feeding schedule: "
+        };
+
+        int petType;
 
 
+        System.out.print("What type of pet do you want to add(1 = Default Pet; 2 = Dog; 3 = Snake): ");
+        petType = sc.nextInt();
+        System.out.println();
+
+        // Get the info on basic Pets
+        for (String prompt : prompts) {
+            System.out.print(prompt);
+            responses.add(sc.nextLine());
+            System.out.println();
+        }
+
+
+
+
+        if (petType == 1) {
+            this.addPet(new Pet(responses.get(0), Integer.parseInt(responses.get(1)), Float.parseFloat(responses.get(2)), responses.get(3), responses.get(4)));
+        }
+        else if (petType == 2) {
+            System.out.print("What is your dog's breed: ");
+            responses.add(sc.nextLine());
+            System.out.println();
+
+            System.out.print("Is your dog vaccinated(y, n): ");
+            responses.add(sc.nextLine());
+            System.out.println();
+
+            this.addPet(new Dog(responses.get(0), Integer.parseInt(responses.get(1)), Float.parseFloat(responses.get(2)), responses.get(3), responses.get(4), responses.get(5), responses.get(6).equalsIgnoreCase("y")));
+
+        } else if (petType == 3) {
+            System.out.print("Is your snake venomous(y, n): ");
+            responses.add(sc.nextLine());
+            System.out.println();
+
+            System.out.print("Is your snake safe to handle(y, n): ");
+            responses.add(sc.nextLine());
+            System.out.println();
+
+            this.addPet(new Snake(responses.get(0), Integer.parseInt(responses.get(1)), Float.parseFloat(responses.get(2)), responses.get(3), responses.get(4), responses.get(5).equalsIgnoreCase("n"), responses.get(6).equalsIgnoreCase("y")));
+        }
     }
 }

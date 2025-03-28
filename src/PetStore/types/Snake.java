@@ -142,6 +142,10 @@ public class Snake extends Pet {
         return this.venomous;
     }
 
+    /**
+     * Returns a definition of Snake
+     * @return snake
+     */
     @Override public String toString() {
         // ID|NAME|AGE|WEIGHT|HABITAT|FEEDINGSCHEDULE|||VENOMOUS|SAFETOHANDLE|
         return String.format("%5d|%20s|%7d|%9.2f|%15s|%19s|%20s|%6s|%9s|%15s|", this.petID, this.getName(), this.getAge(), this.getWeight(), this.getHabitat().toString(), this.getFeedingSchedule().toString(), "", "", this.venomous, this.safeToHandle);

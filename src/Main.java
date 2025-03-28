@@ -26,7 +26,7 @@ public class Main extends PetStore {
         try {
             this.saveToFile();
         } catch (Exception e) {
-            return;
+            return;  // Should've configured a save file, don't hold me accountable for your own failures
         }
     }
 

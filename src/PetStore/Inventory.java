@@ -10,8 +10,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
-
-
 public class Inventory {
     /**
      * Arraylist storing all the pets in Inventory
@@ -38,7 +36,6 @@ public class Inventory {
      */
     public void removePet(Pet p) {
         this.pets.remove(p);
-
     }
 
     /**
@@ -77,6 +74,22 @@ public class Inventory {
         }
 
         return output.toString();
+    }
+
+    /**
+     * Returns a pet object with a matching ID
+     * @param id the id of the pet
+     * @return Pet object with matching ID
+     * @throws Exception if no pet has that ID
+     */
+    public Pet getPetByID(int id) throws Exception {
+        for (Pet p : this.pets) {
+            if (p.getPetID() == id) {
+                return p;
+            }
+        }
+
+        throw new Exception("Pet with ID " + id + " not found");
     }
 
     /**

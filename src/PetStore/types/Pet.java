@@ -255,6 +255,14 @@ public class Pet {
         return this.feedingSchedule;
     }
 
+    /**
+     * Returns the Pet's ID
+     * @return ID
+     */
+    public int getPetID() {
+        return this.petID;
+    }
+
 
     /**
      * Returns the type of Pet
@@ -263,6 +271,10 @@ public class Pet {
         return this.petType;
     }
 
+    /**
+     * Returns a definition of the pet
+     * @return pet
+     */
     @Override public String toString() {
         // ID|NAME|AGE|WEIGHT|HABITAT|FEEDINGSCHEDULE|||||
         return String.format("%5d|%20s|%7d|%9.2f|%15s|%19s|%20s|%6s|%9s|%15s|", this.petID, this.getName(), this.getAge(), this.getWeight(), this.getHabitat().toString(), this.getFeedingSchedule().toString(), "", "", "", "");
