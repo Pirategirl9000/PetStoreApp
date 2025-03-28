@@ -1,10 +1,3 @@
-
-/*
-• date field
-• UML diagram as a JPG file (also checked into GitHub)
- */
-
-
 /*
 @Author: Violet French
 @src: https://github.com/Pirategirl9000/PetStoreApp
