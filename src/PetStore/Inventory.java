@@ -5,10 +5,9 @@
 
 package PetStore;
 
-import PetStore.types.*;
+import PetStore.types.Pet;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Scanner;
 
 public class Inventory {
     /**

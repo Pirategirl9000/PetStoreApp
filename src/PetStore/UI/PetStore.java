@@ -7,7 +7,8 @@ package PetStore.UI;
 
 import PetStore.types.Dog;
 import PetStore.types.Snake;
-import PetStore.types.enums.*;
+import PetStore.types.enums.HABITAT_TYPE;
+import PetStore.types.enums.FEEDING_SCHEDULE;
 import PetStore.types.Pet;
 import PetStore.Inventory;
 
@@ -107,7 +108,7 @@ public class PetStore extends Inventory {
             command = console.nextLine().toLowerCase();
 
             switch (COMMANDS.valueOf(command)) {
-                // ---------------------------------Inventory Management---------------------------------//
+                //---------------------------------Inventory Management---------------------------------//
                 case addpet:
                     try {
                         this.addPet(console);
@@ -120,7 +121,7 @@ public class PetStore extends Inventory {
 
                 case removepet:
                     System.out.print("Pet ID: ");
-                    int id = console.nextInt();
+                    int id = Integer.parseInt(console.nextLine());
                     try {
                         this.removePet(this.getPetByID(id));
                     } catch (Exception e) {
@@ -139,7 +140,7 @@ public class PetStore extends Inventory {
 
 
 
-                // ------------------------------------File IO------------------------------------//
+                //------------------------------------File IO------------------------------------//
                 case setsavefile:
                     System.out.print("Path to File: ");
                     command = console.nextLine();
@@ -154,7 +155,7 @@ public class PetStore extends Inventory {
 
                 case save:
                     this.saveToFile();
-                    break;
+                    continue;
 
 
                 case setinputfile:
@@ -217,10 +218,10 @@ public class PetStore extends Inventory {
                 pet.setName(value.toString());
                 break;
             case Age:
-                pet.setAge((int) value);
+                pet.setAge((Integer.parseInt(value.toString())));
                 break;
             case Weight:
-                pet.setWeight((int) value);
+                pet.setWeight((Float.parseFloat(value.toString())));
                 break;
             case Habitat:
                 pet.setHabitat(HABITAT_TYPE.valueOf(value.toString()));
