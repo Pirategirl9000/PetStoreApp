@@ -6,17 +6,17 @@
 package PetStore.UI;
 
 enum COMMANDS {
-    clearInv,  // Clears the Inventory
-    printInv,  // Prints a stringified list of the current pets in Inventory
+    clearinv,  // Clears the Inventory
+    printinv,  // Prints a stringified list of the current pets in Inventory
 
-    setInputFile,  // Sets a file for reading into
-    readFile,  // Reads into set file
+    setinputfile,  // Sets a file for reading into
+    readfile,  // Reads into set file
 
-    setSaveFile,  // Sets a save file
+    setsavefile,  // Sets a save file
     save,  // Save the current changes to inventory
 
-    addPet,  // Activates interface for creating a new pet
-    removePet,  // Activates interface for removing a pet
+    addpet,  // Activates interface for creating a new pet
+    removepet,  // Activates interface for removing a pet
 
     help,  // Displays Available commands
     quit  // Quits the Running CLI instance

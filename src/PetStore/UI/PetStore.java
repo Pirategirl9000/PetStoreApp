@@ -104,11 +104,11 @@ public class PetStore extends Inventory {
             // People who label things with all these sci-fi names makes it come off so, ick
             // I miss the simple days when we created a genius model for conducting electricity to perform arithmetic and naming it 'Adder'
 
-            command = console.nextLine();
+            command = console.nextLine().toLowerCase();
 
             switch (COMMANDS.valueOf(command)) {
                 // ---------------------------------Inventory Management---------------------------------//
-                case addPet:
+                case addpet:
                     try {
                         this.addPet(console);
                     } catch (Exception e) {
@@ -118,7 +118,7 @@ public class PetStore extends Inventory {
                     }
                     break;
 
-                case removePet:
+                case removepet:
                     System.out.print("Pet ID: ");
                     int id = console.nextInt();
                     try {
@@ -129,18 +129,18 @@ public class PetStore extends Inventory {
 
                     break;
 
-                case clearInv:
+                case clearinv:
                     this.clearInventory();
                     break;
 
-                case printInv:
+                case printinv:
                     System.out.println(this);
                     break;
 
 
 
                 // ------------------------------------File IO------------------------------------//
-                case setSaveFile:
+                case setsavefile:
                     System.out.print("Path to File: ");
                     command = console.nextLine();
 
@@ -157,7 +157,7 @@ public class PetStore extends Inventory {
                     break;
 
 
-                case setInputFile:
+                case setinputfile:
                     System.out.print("Path to File: ");
                     command = console.nextLine();
 
@@ -169,7 +169,7 @@ public class PetStore extends Inventory {
 
                     break;
 
-                case readFile:
+                case readfile:
                     this.readFile();
                     break;
 
@@ -319,7 +319,7 @@ public class PetStore extends Inventory {
 
 
         System.out.print("What type of pet do you want to add(1 = Default Pet; 2 = Dog; 3 = Snake): ");
-        petType = sc.nextInt();
+        petType = Integer.parseInt(sc.nextLine());
 
         sc.reset();
 

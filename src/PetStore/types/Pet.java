@@ -6,6 +6,7 @@
 package PetStore.types;
 
 import PetStore.types.enums.*;
+import java.util.Date;
 
 /**
  * Parent class for any type of animal in the pet store
@@ -16,6 +17,8 @@ public class Pet {
      * Unique Identifier for each pet, used when checking equality or when creating default Pet(name=petID)
      */
     protected final int petID;  // Used by children for their toString()
+
+    protected final Date dateAdded;
 
     /**
      * The type of pet
@@ -74,6 +77,7 @@ public class Pet {
         this.setWeight(weight);
         this.setHabitat(habitat);
         this.setFeedingSchedule(feedingSchedule);
+        this.dateAdded = new Date();
     }
 
     /**
@@ -97,6 +101,7 @@ public class Pet {
         this.setWeight(weight);
         this.setHabitat(habitat);
         this.setFeedingSchedule(feedingSchedule);
+        this.dateAdded = new Date();
     }
 
     /**
@@ -269,6 +274,14 @@ public class Pet {
      */
     public String getPetType() {
         return this.petType;
+    }
+
+    /**
+     * Returns the time this Pet was created
+     * @return Date()
+     */
+    public Date getDateAdded() {
+        return this.dateAdded;
     }
 
     /**
