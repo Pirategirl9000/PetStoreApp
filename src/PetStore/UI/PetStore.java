@@ -25,8 +25,8 @@ public class PetStore extends Inventory {
 
     /**
      * Initializes a pet store with
-     * @param fileOut
-     * @param fileIn
+     * @param fileOut file to save to
+     * @param fileIn file to take input from
      */
     public PetStore(String fileOut, String fileIn) {
         super();
@@ -55,29 +55,50 @@ public class PetStore extends Inventory {
         super();
     }
 
+    /**
+     * Sets the file to save to, can be same as fileIn
+     * @param fileOut the path to the file to print to
+     * @throws FileNotFoundException if the file couldn't be found
+     */
     public void setFileOut(String fileOut) throws FileNotFoundException {
         this.fileOut = new File(fileOut);
     }
 
+    /**
+     * Sets the file to take input from, can be same as fileOut
+     * @param fileIn the path to the file to take input from
+     * @throws FileNotFoundException if the file couldn't be found
+     */
     public void setFileIn(String fileIn) throws FileNotFoundException {
         this.fileIn = new File(fileIn);
     }
 
+    /**
+     * Returns the File object that is being saved to
+     * @return File()
+     */
     public File getFileOut() {
         return fileOut;
     }
 
+    /**
+     * Returns the File object that is set for input
+     * @return File()
+     */
     public File getFileIn() {
         return fileIn;
     }
 
+    /**
+     * Initializes a CLI interface for managing a PetStore inventory, should be called after initialization
+     */
     public void initCLI() {
         Scanner console = new Scanner(System.in);
         String command;
 
         while (true) {
             // I present, my CLI prompt
-            System.out.println("PSUtil>");
+            System.out.print("PSUtil>");
 
             // I think the name is complex looking without being pretentious
             // People who label things with all these sci-fi names makes it come off so, ick
@@ -86,14 +107,39 @@ public class PetStore extends Inventory {
             command = console.nextLine();
 
             switch (COMMANDS.valueOf(command)) {
+                // ---------------------------------Inventory Management---------------------------------//
                 case addPet:
-                    this.addPet(console);
+                    try {
+                        this.addPet(console);
+                    } catch (Exception e) {
+                        System.out.println("Error was encountered while trying to add pet, shutting down");
+                        this.saveToFile();  // Save the program before we close
+                        System.exit(0);
+                    }
+                    break;
+
+                case removePet:
+                    System.out.print("Pet ID: ");
+                    int id = console.nextInt();
+                    try {
+                        this.removePet(this.getPetByID(id));
+                    } catch (Exception e) {
+                        System.out.println("Pet with ID: " + id + " could not be found");
+                    }
+
                     break;
 
                 case clearInv:
                     this.clearInventory();
                     break;
 
+                case printInv:
+                    System.out.println(this);
+                    break;
+
+
+
+                // ------------------------------------File IO------------------------------------//
                 case setSaveFile:
                     System.out.print("Path to File: ");
                     command = console.nextLine();
@@ -104,6 +150,27 @@ public class PetStore extends Inventory {
                         System.out.println("An error was encountered while setting the file. Error: " + e.getMessage());
                     }
 
+                    break;
+
+                case save:
+                    this.saveToFile();
+                    break;
+
+
+                case setInputFile:
+                    System.out.print("Path to File: ");
+                    command = console.nextLine();
+
+                    try {
+                        this.setFileIn(command);
+                    } catch (FileNotFoundException e) {
+                        System.out.println("An error was encountered while setting the file. Error: " + e.getMessage());
+                    }
+
+                    break;
+
+                case readFile:
+                    this.readFile();
                     break;
 
                 case help:
@@ -126,53 +193,21 @@ public class PetStore extends Inventory {
                             "}");
                     break;
 
-                case printInv:
-                    System.out.println(this);
-                    break;
-
-                case save:
-                    this.saveToFile();
-                    break;
-
-                case removePet:
-                    System.out.print("Pet ID: ");
-                    int id = console.nextInt();
-                    try {
-                        this.removePet(this.getPetByID(id));
-                    } catch (Exception e) {
-                        System.out.println("Pet with ID: " + id + " could not be found");
-                    }
-
-                    break;
-
-                case readFile:
-                    this.readFile();
-                    break;
-
-                case setInputFile:
-                    System.out.print("Path to File: ");
-                    command = console.nextLine();
-
-                    try {
-                        this.setFileIn(command);
-                    } catch (FileNotFoundException e) {
-                        System.out.println("An error was encountered while setting the file. Error: " + e.getMessage());
-                    }
-
-                    break;
-
                 case quit:
                     return;
             }
 
-
+            System.out.println(); // Add line break each time
         }
-
-
-
-
     }
 
+    /**
+     * Changes the value of one of Pet's values
+     * @param pet the pet to change
+     * @param valueType the value to change
+     * @param value the value to change it to
+     * @throws IllegalArgumentException if any errors are encountered setting the properties
+     */
     private void setValue(Pet pet, FILE_FORMAT valueType, Object value) throws IllegalArgumentException {
         switch (valueType) {
             case PetType:
@@ -196,6 +231,9 @@ public class PetStore extends Inventory {
         }
     }
 
+    /**
+     * Reads fileIn save file
+     */
     public void readFile() {
         // String PetType | String name | int age | float weight | HABITAT_TYPE habitat | FEEDING_SCHEDULE feedingSchedule
 
@@ -247,6 +285,9 @@ public class PetStore extends Inventory {
         }
     }
 
+    /**
+     * Saves the current Inventory to fileOut
+     */
     public void saveToFile() {
         try {
             FileWriter fw = new FileWriter(this.fileOut);
@@ -260,6 +301,10 @@ public class PetStore extends Inventory {
     }
 
 
+    /**
+     * Adds a pet using a Scanner reference to prompt for input
+     * @param sc the input stream for the prompts
+     */
     public void addPet(Scanner sc) {  // Mimics the function addPet(Pet p) but instead prompts those values
         ArrayList<String> responses = new ArrayList<>();
         String[] prompts = new String[] {
@@ -275,13 +320,13 @@ public class PetStore extends Inventory {
 
         System.out.print("What type of pet do you want to add(1 = Default Pet; 2 = Dog; 3 = Snake): ");
         petType = sc.nextInt();
-        System.out.println();
+
+        sc.reset();
 
         // Get the info on basic Pets
         for (String prompt : prompts) {
             System.out.print(prompt);
             responses.add(sc.nextLine());
-            System.out.println();
         }
 
 
