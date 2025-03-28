@@ -11,20 +11,30 @@
  */
 
 import PetStore.UI.PetStore;
-import PetStore.types.enums.*;
-import PetStore.types.Pet;
 
 /**
  * Driver Code
  */
-public class Main {
+public class Main extends PetStore {
+    /**
+     * Starts the program loop
+     */
+    public Main() {
+        this.initCLI();
+
+        // try to save, if it can't save it then it's not my problem, you'll have to ask 'e'
+        try {
+            this.saveToFile();
+        } catch (Exception e) {
+            return;
+        }
+    }
+
+    /**
+     * Driver code calls constructor and initCLI()
+     * @param args null
+     */
     public static void main(String[] args) {
-        PetStore ps = new PetStore();
-        ps.addPet(new Pet("Danny", 5, 30, HABITAT_TYPE.UNSPECIFIED, FEEDING_SCHEDULE.UNSPECIFIED));
-
-        ps.initCLI();
-
-
-
+        Main petStore = new Main();
     }
 }

@@ -9,7 +9,7 @@ import PetStore.types.enums.*;
 
 
 /**
- * Class for handling Dog type Pets
+ * Class for handling Dogs a child of Pet
  */
 public class Dog extends Pet {
     /**
@@ -170,6 +170,10 @@ public class Dog extends Pet {
         return this.vaccinated;
     }
 
+    /**
+     * Overloads the toString() of pet to include the dog's breed and vaccinated status
+     * @return String definition of Dog
+     */
     @Override public String toString() {
         // ID|NAME|AGE|WEIGHT|HABITAT|FEEDINGSCHEDULE|BREED|VACCINATED|||
         return String.format("%5d|%20s|%7d|%9.2f|%15s|%19s|%20s|%6s|%9s|%15s|", this.petID, this.getName(), this.getAge(), this.getWeight(), this.getHabitat().toString(), this.getFeedingSchedule().toString(), this.breed, this.vaccinated, "", "");

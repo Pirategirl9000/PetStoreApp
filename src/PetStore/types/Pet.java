@@ -7,8 +7,6 @@ package PetStore.types;
 
 import PetStore.types.enums.*;
 
-
-
 /**
  * Parent class for any type of animal in the pet store
  */
@@ -19,6 +17,9 @@ public class Pet {
      */
     protected final int petID;  // Used by children for their toString()
 
+    /**
+     * The type of pet
+     */
     protected String petType = "Default";
 
     /**

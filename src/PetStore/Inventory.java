@@ -11,12 +11,16 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 
+
 public class Inventory {
     /**
      * Arraylist storing all the pets in Inventory
      */
     protected final ArrayList<Pet> pets = new ArrayList<>();
 
+    /**
+     * Header String for the printout
+     */
     private static final String PRINTOUTKEY = String.format("%5s|%20s|%7s|%9s|%15s|%19s|%20s|%6s|%9s|%15s", "ID", "NAME", "AGE", "WEIGHT", "HABITAT", "FEEDING_SCHEDULE", "BREED", "VACCINATED", "VENOMOUS", "SAFE_TO_HANDLE");
 
 
@@ -34,6 +38,7 @@ public class Inventory {
      */
     public void removePet(Pet p) {
         this.pets.remove(p);
+
     }
 
     /**
@@ -53,20 +58,19 @@ public class Inventory {
         return this.pets.get(index);
     }
 
+    /**
+     * Clears the current inventory
+     */
     public void clearInventory() {
         this.pets.clear();
     }
 
     /**
-     * Returns a stringified list of the Inventory
-     * @return String of this.pets
+     * Returns the RawInventory used for saving
+     * @return Every Pet's .toString() result in a line by line String
      */
-    @Override public String toString() {
+    public String getRawInventory() {
         StringBuilder output = new StringBuilder();
-
-        output.append("Inventory:\n");
-        output.append(PRINTOUTKEY);
-        output.append("\n");
 
         for (Pet p : this.pets) {
             output.append(p.toString()).append("\n");
@@ -75,8 +79,16 @@ public class Inventory {
         return output.toString();
     }
 
-    public String getRawInventory() {
+    /**
+     * Returns a stringified list of the Inventory and prints the header
+     * @return String of this.pets
+     */
+    @Override public String toString() {
         StringBuilder output = new StringBuilder();
+
+        output.append("Inventory:\n");
+        output.append(PRINTOUTKEY);
+        output.append("\n");
 
         for (Pet p : this.pets) {
             output.append(p.toString()).append("\n");

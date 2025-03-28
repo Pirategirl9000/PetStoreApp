@@ -8,6 +8,9 @@ package PetStore.types;
 import PetStore.types.enums.FEEDING_SCHEDULE;
 import PetStore.types.enums.HABITAT_TYPE;
 
+/**
+ * Class for handling Snakes, a child of Pet
+ */
 public class Snake extends Pet {
     /**
      * Boolean representing whether they are safe to handle
